@@ -64,13 +64,17 @@ czyli:
 Help
 
 Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
-„bazowych”, jedną z nich jest read.csv. Istenieje jednak niezliczona
+„bazowych”, jedną z nich jest `read.csv`. Istenieje jednak niezliczona
 ilość funkcji bardziej złożonych i stworzonych do specyfinczych zadań.
 Są one zawarte w pakietach (packages). Aby wykorzystać funkcję z
 jakiegoś pakietu należy najpierw go zainstalować (raz), następnie
 wczytać (każdorazowo przy nowym projekcie). Służą do tego funckje:
-install.packages(„nazwa\_pakietu”) library(nazwa\_pakietu) Instalować
-pakiety można również wchodząc w zakładkę Packages.
+
+`install.packages(„nazwa_pakietu”)`
+
+`library(nazwa_pakietu)`
+
+Instalować pakiety można również wchodząc w zakładkę Packages.
 
 Analizy statystyczne w R
 ------------------------
