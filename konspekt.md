@@ -62,7 +62,9 @@ czyli:
 
 `dane[,4]`
 
-Help
+Pomoc możemy uzyskac wpisując
+
+`?nazwa_funkcji`
 
 Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
 „bazowych”, jedną z nich jest `read.csv`. Istenieje jednak niezliczona
