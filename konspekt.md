@@ -23,6 +23,8 @@ RStudio składa się z kilku podokien i narzędzi:
     które następnie będziemy wykonywać. Do otwarcia nowego skryptu służy
     ikona Add R Script lub kombinacja klawiszy Ctrl+Shift+N.
 
+![](Rstudio.jpg)
+
 Funkcje – zazwyczaj skonstruowane w sposób:
 
 nazwa\_funkcji(x, y, …)
