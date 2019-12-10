@@ -55,7 +55,11 @@ Po wywołaniu fukncji str() zobaczymy strukturę każdej z kolumn.
 Pamiętaj, że aby przeprowadzac dalsze przetowrzenia na liczbach
 odpowiednie kolumny muszą mięć odpowiednie formaty liczbowe - czyli
 **int** lub **num** Dostęp do poszczególne kolumn - możemy użyć znaku $
-czyli: `dane$nachylenie` lub `dane[,4]`
+czyli:
+
+`dane$nachylenie` lub
+
+`dane[,4]`
 
 Help
 
