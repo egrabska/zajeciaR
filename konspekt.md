@@ -23,7 +23,7 @@ RStudio składa się z kilku podokien i narzędzi:
     które następnie będziemy wykonywać. Do otwarcia nowego skryptu służy
     ikona Add R Script lub kombinacja klawiszy Ctrl+Shift+N.
 
-![](Rstudio.jpg)
+<img src="Rstudio.jpg" width="650" />
 
 Funkcje – zazwyczaj skonstruowane w sposób:
 
@@ -36,17 +36,28 @@ nazwa\_funkcji(x, y, …)
 
 `read.csv(file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, comment.char = "", ...)`
 
-Wynik działania danej funkcji możemy przypisać do zmiennej: tabela =
-read.csv(…) Typy obiektów:
+Wynik działania danej funkcji możemy przypisać do zmiennej:
+`dane = read.csv(…)`
+
+Typy obiektów w R:
 
 -   Wektory
 -   Macierze
 -   Listy
 -   Tekst
--   Ramki danych (data frames)
+-   Ramki danych (**data frames**)
 
-Wczytywanie bazy danych - najczęściej w formacie .csv &gt; data frame
-Poszczególne kolumny &gt; $ Help
+Wczytywanie bazy danych - najczęściej w formacie .csv &gt; obiekt typu
+data frame Po wczytaniu danych warto sprawdzić czy wszystko z nimi w
+porządku, np. uzywając str() lub summary() `str(dane)` `summary(dane)`
+
+Po wywołaniu fukncji str() zobaczymy strukturę każdej z kolumn.
+Pamiętaj, że aby przeprowadzac dalsze przetowrzenia na liczbach
+odpowiednie kolumny muszą mięć odpowiednie formaty liczbowe - czyli
+**int** lub **num** Dostęp do poszczególne kolumn - możemy użyć znaku $
+czyli: `dane$nachylenie` lub `dane[,4]`
+
+Help
 
 Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
 „bazowych”, jedną z nich jest read.csv. Istenieje jednak niezliczona
