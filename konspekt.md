@@ -34,8 +34,33 @@ nazwa\_funkcji(x, y, …)
 
 `read.csv(file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, comment.char = "", ...)`
 
-Pakiety – instalacja i wczytywanie: install.packages() library() Help
-Typy obiektów
+Wynik działania danej funkcji możemy przypisać do zmiennej: tabela =
+read.csv(…) Typy obiektów: • Wektory • Macierze • Listy • Tekst • Ramki
+danych (data frames)
 
-Wczytywanie bazy danych: Najczęściej w formacie .csv &gt; data frame
-Poszczególne kolumny &gt; $
+Wczytywanie bazy danych - najczęściej w formacie .csv &gt; data frame
+Poszczególne kolumny &gt; $ Help
+
+Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
+„bazowych”, jedną z nich jest read.csv. Istenieje jednak niezliczona
+ilość funkcji bardziej złożonych i stworzonych do specyfinczych zadań.
+Są one zawarte w pakietach (packages). Aby wykorzystać funkcję z
+jakiegoś pakietu należy najpierw go zainstalować (raz), następnie
+wczytać (każdorazowo przy nowym projekcie). Służą do tego funckje:
+install.packages(„nazwa\_pakietu”) library(nazwa\_pakietu) Instalować
+pakiety można również wchodząc w zakładkę Packages.
+
+Analizy statystyczne w R
+------------------------
+
+-   Korelacja
+-   Współczynnik korelacji liniowej Pearsona
+-   Współczynnik korelacji rang Spearmana
+-   Regresja, modele regresji
+-   Prosta regresja liniowa
+-   Regresja wieloraka
+
+Wizualizacje w R
+----------------
+
+Wykorzystamy pakiet ggplot2.

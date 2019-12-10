@@ -1,8 +1,8 @@
 ---
 title: "Zajęcia z R"
-autor: "Ewa Grabska"
-data: "17-12-2019"
-output: html_document
+data: 17-12-2019
+output: md_document
+autor: Ewa Grabska
 ---
 
 ```{r setup, include=FALSE}
@@ -35,15 +35,38 @@ Na przykład w funkcji [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/libr
 
 `read.csv(file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, comment.char = "", ...)`
 
-Pakiety – instalacja i wczytywanie:
-install.packages()
-library()
-Help 
-Typy obiektów
+Wynik działania danej funkcji możemy przypisać do zmiennej:
+	tabela = read.csv(…)
+Typy obiektów:
+•	Wektory 
+•	Macierze
+•	Listy
+•	Tekst
+•	Ramki danych (data frames)
 
-Wczytywanie bazy danych:
-Najczęściej w formacie .csv > data frame
+Wczytywanie bazy danych - najczęściej w formacie .csv > data frame
 Poszczególne kolumny > $
+Help 
+
+Pakiety – instalacja i wczytywanie
+W R dostępnych jest wiele funkcji „bazowych”, jedną z nich jest read.csv. Istenieje jednak niezliczona ilość funkcji bardziej złożonych i stworzonych do specyfinczych zadań. Są one zawarte w pakietach (packages). Aby wykorzystać funkcję z jakiegoś pakietu należy najpierw go zainstalować (raz), następnie wczytać (każdorazowo przy nowym projekcie). Służą do tego funckje:
+install.packages(„nazwa_pakietu”)
+library(nazwa_pakietu)
+Instalować pakiety można również wchodząc w zakładkę Packages.
+
+
+## Analizy statystyczne w R
+
+* Korelacja
+* Współczynnik korelacji liniowej Pearsona
+* Współczynnik korelacji rang Spearmana
+* Regresja, modele regresji
+* Prosta regresja liniowa
+* Regresja wieloraka
+
+## Wizualizacje w R
+Wykorzystamy pakiet ggplot2. 
+
 
 
 
