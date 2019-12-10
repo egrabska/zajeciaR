@@ -25,7 +25,7 @@ RStudio składa się z kilku podokien i narzędzi:
 
 *	W R najczęściej chcemy pisać skrypty składające się z wielu linii, które następnie będziemy wykonywać. Do otwarcia nowego skryptu służy ikona Add R Script lub kombinacja klawiszy Ctrl+Shift+N. 
 
-![](Rstudio.jpg){width=650px}
+[Podstawy R - cheat sheet](github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
 
 Funkcje – zazwyczaj skonstruowane w sposób:
 
@@ -81,6 +81,11 @@ Instalować pakiety można również wchodząc w zakładkę Packages.
 * Regresja, modele regresji
 * Prosta regresja liniowa
 * Regresja wieloraka
+
+Proste wykresy mozna tworzyć za pomocą funckji `plot()`
+
+
+
 
 ## Wizualizacje w R
 Wykorzystamy pakiet ggplot2. 

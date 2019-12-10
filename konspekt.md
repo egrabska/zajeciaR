@@ -23,7 +23,8 @@ RStudio składa się z kilku podokien i narzędzi:
     które następnie będziemy wykonywać. Do otwarcia nowego skryptu służy
     ikona Add R Script lub kombinacja klawiszy Ctrl+Shift+N.
 
-<img src="Rstudio.jpg" width="650" />
+[Podstawy R - cheat
+sheet](github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
 
 Funkcje – zazwyczaj skonstruowane w sposób:
 
@@ -85,6 +86,8 @@ Analizy statystyczne w R
 -   Regresja, modele regresji
 -   Prosta regresja liniowa
 -   Regresja wieloraka
+
+Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
 Wizualizacje w R
 ----------------
