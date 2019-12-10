@@ -23,8 +23,7 @@ RStudio składa się z kilku podokien i narzędzi:
     które następnie będziemy wykonywać. Do otwarcia nowego skryptu służy
     ikona Add R Script lub kombinacja klawiszy Ctrl+Shift+N.
 
-[Podstawy R - cheat
-sheet](github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+![Podstawy R - cheat sheet](base-r.pdf)
 
 Funkcje – zazwyczaj skonstruowane w sposób:
 
