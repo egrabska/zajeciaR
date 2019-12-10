@@ -35,8 +35,13 @@ nazwa\_funkcji(x, y, …)
 `read.csv(file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, comment.char = "", ...)`
 
 Wynik działania danej funkcji możemy przypisać do zmiennej: tabela =
-read.csv(…) Typy obiektów: • Wektory • Macierze • Listy • Tekst • Ramki
-danych (data frames)
+read.csv(…) Typy obiektów:
+
+-   Wektory
+-   Macierze
+-   Listy
+-   Tekst
+-   Ramki danych (data frames)
 
 Wczytywanie bazy danych - najczęściej w formacie .csv &gt; data frame
 Poszczególne kolumny &gt; $ Help
