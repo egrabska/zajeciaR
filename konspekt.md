@@ -1,6 +1,8 @@
 Wprowadzenie
 ------------
 
+Otwórz RStudio
+
 **R** – język
 
 **Rstudio** – program do języka R
@@ -47,9 +49,13 @@ Typy obiektów w R:
 -   Tekst
 -   Ramki danych (**data frames**)
 
-Wczytywanie bazy danych - najczęściej w formacie .csv &gt; obiekt typu
-data frame Po wczytaniu danych warto sprawdzić czy wszystko z nimi w
-porządku, np. uzywając str() lub summary()
+*Wektory* - to najprostszy rodzaj struktura danych w R.
+
+`wektor = c(10, 12, 16, -4, 3, 17, -1, 5, 12, 4)`
+
+*Ramki danych* Wczytywanie bazy danych - najczęściej w formacie .csv
+&gt; obiekt typu data frame Po wczytaniu danych warto sprawdzić czy
+wszystko z nimi w porządku, np. uzywając str() lub summary()
 
 `str(dane)` `summary(dane)`
 
@@ -75,22 +81,20 @@ zmienniej uzyskamy poprzez wpisanie:
 `mean()` `min()` `std()`
 
 **Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
-jako NA (Not Available) wynikiem wyżej wymienionych operacji również
+jako **NA** (Not Available) wynikiem wyżej wymienionych operacji również
 będzie NA. Aby policzyć statystyki dla wartości, które nie są NA nalezy
-dodać argument `na.rm = TRUE` NP.:
+dodać argument `na.rm = TRUE` np.:
 
 `mean(dane$TPI200, na.rm = TRUE)`
 
-Pomoc możemy uzyskac wpisując:
-
-`?nazwa_funkcji`
+------------------------------------------------------------------------
 
 Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
-„bazowych”, jedną z nich jest `read.csv`. Istenieje jednak niezliczona
-ilość funkcji bardziej złożonych i stworzonych do specyfinczych zadań.
-Są one zawarte w pakietach (packages). Aby wykorzystać funkcję z
-jakiegoś pakietu należy najpierw go zainstalować (raz), następnie
-wczytać (każdorazowo przy nowym projekcie). Służą do tego funckje:
+„bazowych”, jedną z nich jest `read.csv()`. Istenieje jednak wiele
+dodatkowych pakietów zawierających fukkcje bardziej złożone i służące
+określonym zadaniom. Aby wykorzystać funkcje z jakiegoś pakietu należy
+najpierw go zainstalować (raz), następnie wczytać (każdorazowo przy
+nowym projekcie). Służą do tego funkcje:
 
 `install.packages(„nazwa_pakietu”)`
 
@@ -98,17 +102,37 @@ wczytać (każdorazowo przy nowym projekcie). Służą do tego funckje:
 
 Instalować pakiety można również wchodząc w zakładkę Packages.
 
+Pomoc na temat danej funkcji możemy uzyskac wpisując:
+
+`?nazwa_funkcji`
+
+------------------------------------------------------------------------
+
 Analizy statystyczne w R
 ------------------------
 
 -   Korelacja
--   Współczynnik korelacji liniowej Pearsona
--   Współczynnik korelacji rang Spearmana
 -   Regresja, modele regresji
 -   Prosta regresja liniowa
 -   Regresja wieloraka
 
 Proste wykresy mozna tworzyć za pomocą funckji `plot()`
+
+Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew.
+
+To obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
+Domyślnie mierzy ona korelacje Pearsona.
+
+Wywołując pomoc dla funkcji cor() sprawdź jakie miary korelacji są
+dostępne.
+
+Korelację obliczymy tylko dla danych liczbowych - dlatego przed jej
+obliczeniem wyodrębnimy cześć naszego data frame.
+
+W tym celu wykorzystamy nawiasów kwadratowych:
+
+Utwórz nowy obiekt dane\_subset, który będzie zawierał kolumny 3, 4 i od
+9 do 13, następnie oblicz macierz korelacji Persona i Spearmana.
 
 Wizualizacje w R
 ----------------
