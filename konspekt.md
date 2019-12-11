@@ -120,6 +120,8 @@ Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
 Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew.
 
+![](plot1.jpg)
+
 To obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
 Domyślnie mierzy ona korelacje Pearsona.
 
