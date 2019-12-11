@@ -119,7 +119,6 @@ Analizy statystyczne w R
 Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
 Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew.
-
 ![](plot1.jpeg)
 
 To obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
@@ -135,6 +134,8 @@ W tym celu wykorzystamy nawiasów kwadratowych:
 
 Utwórz nowy obiekt dane\_subset, który będzie zawierał kolumny 3, 4 i od
 9 do 13, następnie oblicz macierz korelacji Persona i Spearmana.
+
+------------------------------------------------------------------------
 
 Wizualizacje w R
 ----------------
