@@ -49,7 +49,9 @@ Typy obiektów w R:
 
 Wczytywanie bazy danych - najczęściej w formacie .csv &gt; obiekt typu
 data frame Po wczytaniu danych warto sprawdzić czy wszystko z nimi w
-porządku, np. uzywając str() lub summary() `str(dane)` `summary(dane)`
+porządku, np. uzywając str() lub summary()
+
+`str(dane)` `summary(dane)`
 
 Po wywołaniu fukncji str() zobaczymy strukturę każdej z kolumn.
 Pamiętaj, że aby przeprowadzac dalsze przetowrzenia na liczbach
@@ -57,11 +59,29 @@ odpowiednie kolumny muszą mięć odpowiednie formaty liczbowe - czyli
 **int** lub **num** Dostęp do poszczególne kolumn - możemy użyć znaku $
 czyli:
 
-`dane$nachylenie` lub
+`dane$nachylenie`
+
+lub kwadratowcyh nawiasów:
 
 `dane[,4]`
 
-Pomoc możemy uzyskac wpisując
+Aby wywołac jakąś konkretną wartość z data frame możemy wpisać:
+
+`dane[9,17]` gdzie w tym przypadku 9 to numer rzędu a 17 kolumny
+
+Statystyki takie jak średnia, minimum, odchylenie standardowe dla danej
+zmienniej uzyskamy poprzez wpisanie:
+
+`mean()` `min()` `std()`
+
+**Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
+jako NA (Not Available) wynikiem wyżej wymienionych operacji również
+będzie NA. Aby policzyć statystyki dla wartości, które nie są NA nalezy
+dodać argument `na.rm = TRUE` NP.:
+
+`mean(dane$TPI200, na.rm = TRUE)`
+
+Pomoc możemy uzyskac wpisując:
 
 `?nazwa_funkcji`
 
