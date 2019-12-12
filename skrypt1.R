@@ -7,10 +7,12 @@
 log10(1000)
 cos(60) # w radianach!
 x = 3 #przypisanie wartości do obiektu x i y:
-y = 2.4
+y = 2.4916
 x+y
 nazwa = "Wydział leśny"
 nazwa #wywołanie obiektu
+round(y, 2)
+
 
 #TYPY OBIEKTÓW
 class()
@@ -27,11 +29,15 @@ dane[,4]
 dane[7,19]
 summary(dane)
 
-#proste wykresy - scatterplot
+#proste wykresy - scatterploty
 plot(dane$Wiek, dane$HL)
 plot(dane$NPM, dane$SI)
-qqplot(dane$Wiek, dane$HL)
+plot(dane$HL, dane$Dg)
 
+scatter.smooth(dane$HL, dane$Dg)
+boxplot(dane$HL)
+plot(density(dane$HL))
+hist(dane$HL)
 
 #brak wartości - NA (Not Available)
 mean(dane$Wiek)
@@ -51,28 +57,37 @@ str(dane)
 #subset bazy danych
 sub_dane = dane[,c(3:4, 9:13)]
 cor(sub_dane, use = "complete.obs")
-cor(sub_dane ,method = "spearman")
+cor(sub_dane, method = "spearman")
 
 #iSTOTNOŚC KORELACJI
 cor.test(dane$Wiek, dane$HL)
 plot(dane$Wiek, dane$HL)
 
+#wykresy korelacji
+library(corrplot)
+kor = cor(sub_dane, use = "complete.obs")
+pairs(sub_dane)
+corrplot(kor)
 
 
 #regresja liniowa
 reg_lin = lm(dane$HL ~ dane$Wiek)
+reg_lin #równanie regresji
+scatter.smooth(dane$Wiek, dane$HL)
 summary(reg_lin)
-
-plot(dane$HL, dane$SI)
-reg_lin2 = lm(dane$SI ~ dane$HL)
-summary(reg_lin3)
-loess_fit = loess(dane$HL ~ dane$SI)
-lines(dane$HL, predict(loess_fit), col = "blue")
+?scatter.smooth
+pred_HL = predict(reg_lin, dane)
+plot(dane$HL, pred_HL)
+plot(reg_lin)
 
 
-reg_lin3 = lm(dane$SI ~ dane$NPM)
+#multiple linear regression
+reg_wiel = lm(dane$SI ~ dane$Wiek + dane$NPM)
+
+#regresja nieliniowa
 reg_nielin = lm(dane$SI ~ poly(dane$NPM,4))
 summary(reg_nielin)
+
 
 
 

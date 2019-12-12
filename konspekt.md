@@ -49,7 +49,7 @@ Typy obiektów w R:
 -   Tekst
 -   Ramki danych (**data frames**)
 
-*Wektory* - to najprostszy rodzaj struktura danych w R.
+*Wektory* - to najprostszy rodzaj struktury danych w R.
 
 `wektor = c(10, 12, 16, -4, 3, 17, -1, 5, 12, 4)`
 
@@ -74,18 +74,6 @@ lub kwadratowcyh nawiasów:
 Aby wywołac jakąś konkretną wartość z data frame możemy wpisać:
 
 `dane[9,17]` gdzie w tym przypadku 9 to numer rzędu a 17 kolumny
-
-Statystyki takie jak średnia, minimum, odchylenie standardowe dla danej
-zmienniej uzyskamy poprzez wpisanie:
-
-`mean()` `min()` `std()`
-
-**Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
-jako **NA** (Not Available) wynikiem wyżej wymienionych operacji również
-będzie NA. Aby policzyć statystyki dla wartości, które nie są NA nalezy
-dodać argument `na.rm = TRUE` np.:
-
-`mean(dane$TPI200, na.rm = TRUE)`
 
 ------------------------------------------------------------------------
 
@@ -116,12 +104,42 @@ Analizy statystyczne w R
 -   Prosta regresja liniowa
 -   Regresja wieloraka
 
+### Statystyki opisowe
+
+Statystyki takie jak średnia, minimum, odchylenie standardowe,
+mediana... dla danej zmienniej uzyskamy poprzez wpisanie:
+
+`mean()` `min()` `std()` `median()`
+
+**Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
+jako **NA** (Not Available) wynikiem wyżej wymienionych operacji również
+będzie NA. Aby policzyć statystyki dla wartości, które nie są NA nalezy
+dodać argument `na.rm = TRUE` np.:
+
+`mean(dane$TPI200, na.rm = TRUE)`
+
+### Proste wykresy
+
 Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
-Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew.
-![](plot1.jpeg)
+Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew oraz
+Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg) Inne przydatne
+funkcje do wykresów to:
 
-To obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
+-   Wykres punktowy z krzywą `scatter.smooth()`
+
+-   Wykres ramka-wąsy `box.plot()`
+
+-   Histogram `hist()`
+
+-   Wykres gęstości `plot(density())`
+
+Wygeneruj kilka z wyżej wymienionych typów wykresów dla wybranych
+zmiennych.
+
+### Korelacja
+
+Do obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
 Domyślnie mierzy ona korelacje Pearsona.
 
 Wywołując pomoc dla funkcji cor() sprawdź jakie miary korelacji są
@@ -130,14 +148,25 @@ dostępne.
 Korelację obliczymy tylko dla danych liczbowych - dlatego przed jej
 obliczeniem wyodrębnimy cześć naszego data frame.
 
-W tym celu wykorzystamy nawiasów kwadratowych:
+W tym celu wykorzystamy nawiasy kwadratowe.
 
-Utwórz nowy obiekt dane\_subset, który będzie zawierał kolumny 3, 4 i od
-9 do 13, następnie oblicz macierz korelacji Persona i Spearmana.
+Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
+od 9 do 13, następnie oblicz macierz korelacji.
+
+### Regresja liniowa
+
+Do obliczenia modelu regresji liniowej służy funkcja `lm()`. Formułę
+modelu podajemy w postaci: Y ~ X1 + X2 + ...
+
+Oblicz model regresji liniowej - jako zmienną objaśnianą wybierz
+Wysokość a jako objaśniającą Wiek. Zapisz model jako obiekt *model1*
+Sprawdź parametry modelu poprzez zastosowanie funkcji `summary()`
+
+Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
 
 ------------------------------------------------------------------------
 
 Wizualizacje w R
 ----------------
 
-Wykorzystamy pakiet ggplot2.
+Wykorzystamy pakiety `ggplot2` i `corrplot`
