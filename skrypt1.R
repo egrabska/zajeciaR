@@ -22,12 +22,13 @@ class(wektor)
 #funkcje
 #wczytywanie gotowej bazy danych, najczęściej w formacie .csv
 
-dane = read.csv("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
+dane = read.csv("E:/dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
 str(dane)
 dane$Nachylenie
 dane[,4]
 dane[7,19]
 summary(dane)
+unique(dane$Nadle.nictwo)
 
 #proste wykresy - scatterploty
 plot(dane$Wiek, dane$HL)
@@ -46,54 +47,59 @@ sd(dane$TPI200, na.rm = TRUE)
 
 mean(dane$TPI200, na.rm = TRUE)
 
-hist(dane$Wiek)
-hist(dane$HL)
-
-d_wiek = density(dane$Wiek)
-plot(d_wiek)
-cor(dane)
-
 str(dane)
 #subset bazy danych
 sub_dane = dane[,c(3:4, 9:13)]
 cor(sub_dane, use = "complete.obs")
 cor(sub_dane, method = "spearman")
 
-#iSTOTNOŚC KORELACJI
+#iSTOTNOŚC KORELACJI?
 cor.test(dane$Wiek, dane$HL)
-plot(dane$Wiek, dane$HL)
+?cor.test
 
 #wykresy korelacji
 library(corrplot)
 kor = cor(sub_dane, use = "complete.obs")
 pairs(sub_dane)
-corrplot(kor)
+corrplot(kor, type = "upper", method = "color")
 
 
 #regresja liniowa
 reg_lin = lm(dane$HL ~ dane$Wiek)
-reg_lin #równanie regresji
+reg_lin #równanie regresji - współczynniki
 scatter.smooth(dane$Wiek, dane$HL)
 summary(reg_lin)
-?scatter.smooth
+
+AIC(reg_lin)
+
+
+
 pred_HL = predict(reg_lin, dane)
 plot(dane$HL, pred_HL)
 plot(reg_lin)
 
 
-#multiple linear regression
-reg_wiel = lm(dane$SI ~ dane$Wiek + dane$NPM)
+#multiple linear regression - zestandaryzowac i znormalizowac!!
+reg_wiel = lm(dane$SI ~ dane$Wiek + dane$NPM + dane$HL)
+summary(reg_wiel)
 
-#regresja nieliniowa
-reg_nielin = lm(dane$SI ~ poly(dane$NPM,4))
+#regresja nieliniowa - SI a wysokość npm
+scatter.smooth(dane$NPM, dane$SI)
+reg_nielin = lm(dane$SI ~ poly(dane$NPM,2))
 summary(reg_nielin)
 
 
 
 
 library(ggplot2)
-ggplot(dane, aes(dane$NPM, dane$SI)) + geom_point()+ geom_smooth(se=0)
+ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) + 
+  geom_point(alpha = 0.6)+
+  geom_hline(yintercept = 40, size = 1.8, alpha = 0.6)+
+  theme_classic()
 
+ggplot(dane, aes(y = HL, color = Seria))+
+  geom_boxplot()+
+  facet_grid(aes(rows = Seria))
 
 
 

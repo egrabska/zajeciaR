@@ -44,9 +44,9 @@ Wynik działania danej funkcji możemy przypisać do zmiennej:
 Typy obiektów w R:
 
 -   Wektory
+-   Tekst
 -   Macierze
 -   Listy
--   Tekst
 -   Ramki danych (**data frames**)
 
 *Wektory* - to najprostszy rodzaj struktury danych w R.
@@ -123,8 +123,9 @@ dodać argument `na.rm = TRUE` np.:
 Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
 Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew oraz
-Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg) Inne przydatne
-funkcje do wykresów to:
+Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg)
+
+Inne przydatne funkcje do wykresów to:
 
 -   Wykres punktowy z krzywą `scatter.smooth()`
 
@@ -153,14 +154,23 @@ W tym celu wykorzystamy nawiasy kwadratowe.
 Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
 od 9 do 13, następnie oblicz macierz korelacji.
 
+Do obliczenia istotności korelacji służy funkcja `cor.test()`
+
+Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
+`corrplot`. Zanistaluj i wczytaj pakiet a następnie użyj funkcji
+`corrplot()` do wizualizacji wcześniej obliczonej macierzy korelacji.
+
 ### Regresja liniowa
 
 Do obliczenia modelu regresji liniowej służy funkcja `lm()`. Formułę
 modelu podajemy w postaci: Y ~ X1 + X2 + ...
 
 Oblicz model regresji liniowej - jako zmienną objaśnianą wybierz
-Wysokość a jako objaśniającą Wiek. Zapisz model jako obiekt *model1*
-Sprawdź parametry modelu poprzez zastosowanie funkcji `summary()`
+Wysokość a jako objaśniającą Wiek. Zapisz model jako obiekt *model1* i
+wywołaj go - pojawią się współczynniki a i b czyli równanie regresji.
+Sprawdź inne parametry modelu poprzez zastosowanie funkcji `summary()`
+
+W podsumowaniu modelu znajdziemy między innymi wartość p
 
 Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
 
@@ -169,4 +179,13 @@ Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
 Wizualizacje w R
 ----------------
 
-Wykorzystamy pakiety `ggplot2` i `corrplot`
+Wykorzystamy pakiet `ggplot2`
+
+Zainstaluj i wczytaj pakiet `ggplot2`
+
+Funkcja `ggplot` składa się z kilku części, żeby stworzyć wykres należy
+wpisać:
+
+`ggplot(dane, aes(x,y))`
+
+aes - czyli *aesthetics*
