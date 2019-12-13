@@ -22,12 +22,13 @@ class(wektor)
 #funkcje
 #wczytywanie gotowej bazy danych, najczęściej w formacie .csv
 
-dane = read.csv("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
+dane = read.csv("E:/dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
 str(dane)
 dane$Nachylenie
 dane[,4]
 dane[7,19]
 summary(dane)
+unique(dane$Nadle.nictwo)
 
 #proste wykresy - scatterploty
 plot(dane$Wiek, dane$HL)
@@ -46,22 +47,15 @@ sd(dane$TPI200, na.rm = TRUE)
 
 mean(dane$TPI200, na.rm = TRUE)
 
-hist(dane$Wiek)
-hist(dane$HL)
-
-d_wiek = density(dane$Wiek)
-plot(d_wiek)
-cor(dane)
-
 str(dane)
 #subset bazy danych
 sub_dane = dane[,c(3:4, 9:13)]
 cor(sub_dane, use = "complete.obs")
 cor(sub_dane, method = "spearman")
 
-#iSTOTNOŚC KORELACJI
+#iSTOTNOŚC KORELACJI?
 cor.test(dane$Wiek, dane$HL)
-plot(dane$Wiek, dane$HL)
+?cor.test
 
 #wykresy korelacji
 library(corrplot)

@@ -44,9 +44,9 @@ Wynik działania danej funkcji możemy przypisać do zmiennej:
 Typy obiektów w R:
 
 -   Wektory
+-   Tekst
 -   Macierze
 -   Listy
--   Tekst
 -   Ramki danych (**data frames**)
 
 *Wektory* - to najprostszy rodzaj struktury danych w R.
@@ -123,8 +123,9 @@ dodać argument `na.rm = TRUE` np.:
 Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
 Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew oraz
-Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg) Inne przydatne
-funkcje do wykresów to:
+Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg)
+
+Inne przydatne funkcje do wykresów to:
 
 -   Wykres punktowy z krzywą `scatter.smooth()`
 
@@ -152,6 +153,12 @@ W tym celu wykorzystamy nawiasy kwadratowe.
 
 Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
 od 9 do 13, następnie oblicz macierz korelacji.
+
+Do obliczenia istotności korelacji służy funkcja `cor.test()`
+
+Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
+`corrplot`. Zanistaluj i wczytaj pakiet a następnie użyj funkcji
+`corrplot()` do wizualizacji wcześniej obliczonej macierzy korelacji.
 
 ### Regresja liniowa
 
