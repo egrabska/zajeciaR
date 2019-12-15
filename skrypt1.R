@@ -79,14 +79,28 @@ plot(dane$HL, pred_HL)
 plot(reg_lin)
 
 
-#multiple linear regression - zestandaryzowac i znormalizowac!!
-reg_wiel = lm(dane$SI ~ dane$Wiek + dane$NPM + dane$HL)
+#multiple linear regression - zestandaryzowac i znormalizowac!!?
+
+sub_dane_sc = scale(sub_dane)
+
+reg_wiel = lm(sub_dane$SI ~ sub_dane$Wiek + sub_dane$NPM + sub_dane$HL)
 summary(reg_wiel)
 
 #regresja nieliniowa - SI a wysokość npm
 scatter.smooth(dane$NPM, dane$SI)
 reg_nielin = lm(dane$SI ~ poly(dane$NPM,2))
 summary(reg_nielin)
+
+tab$area = NA
+tab$area = as.numeric(tab$area)
+tab$area = tab$Count/100
+
+tab = read.csv("c:/04_R/swir.csv", sep = ";", dec = ",")
+str(tab)
+tab$date3 = as.Date(tab$date3, "%d.%m.%Y")
+plot(tab$date3, tab$Count)
+ggplot(tab, aes(date3, area, fill = season))+
+  geom_bar(stat = "identity", width = 8.0)
 
 
 
@@ -96,6 +110,11 @@ ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) +
   geom_point(alpha = 0.6)+
   geom_hline(yintercept = 40, size = 1.8, alpha = 0.6)+
   theme_classic()
+
+ggplot(dane, aes(Wiek, HL))+
+  geom_point()+
+  geom_smooth(se=0, method ="gam")+
+  geom_vline(xintercept = 100, size = 1.5)
 
 ggplot(dane, aes(y = HL, color = Seria))+
   geom_boxplot()+
