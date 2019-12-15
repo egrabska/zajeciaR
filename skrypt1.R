@@ -79,8 +79,11 @@ plot(dane$HL, pred_HL)
 plot(reg_lin)
 
 
-#multiple linear regression - zestandaryzowac i znormalizowac!!
-reg_wiel = lm(dane$SI ~ dane$Wiek + dane$NPM + dane$HL)
+#multiple linear regression - zestandaryzowac i znormalizowac!!?
+
+sub_dane_sc = scale(sub_dane)
+
+reg_wiel = lm(sub_dane$SI ~ sub_dane$Wiek + sub_dane$NPM + sub_dane$HL)
 summary(reg_wiel)
 
 #regresja nieliniowa - SI a wysokość npm
@@ -96,6 +99,11 @@ ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) +
   geom_point(alpha = 0.6)+
   geom_hline(yintercept = 40, size = 1.8, alpha = 0.6)+
   theme_classic()
+
+ggplot(dane, aes(Wiek, HL))+
+  geom_point()+
+  geom_smooth(se=0, method ="gam")+
+  geom_vline(xintercept = 100, size = 1.5)
 
 ggplot(dane, aes(y = HL, color = Seria))+
   geom_boxplot()+
