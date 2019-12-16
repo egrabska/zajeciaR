@@ -1,8 +1,6 @@
 Wprowadzenie
 ------------
 
-Otwórz RStudio
-
 **R** – język programowania; środowisko do obliczeń statystycznych i
 wizualizacji (nie tylko). Oprogramowanie R jest projektem GNU opartym o
 licencję GNU GPL, jest więc zupełnie darmowy zarówno do zastosowań
@@ -117,7 +115,13 @@ Analizy statystyczne w R
 Statystyki takie jak średnia, minimum, odchylenie standardowe,
 mediana... dla danej zmienniej uzyskamy poprzez wpisanie:
 
-`mean()` `min()` `std()` `median()`
+`mean()`
+
+`min()`
+
+`std()`
+
+`median()`
 
 **Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
 jako **NA** (Not Available) wynikiem wyżej wymienionych operacji również
@@ -164,19 +168,17 @@ W tym celu wykorzystamy nawiasy kwadratowe.
 Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
 od 9 do 13, następnie oblicz macierz korelacji.
 
-<<<<<<< HEAD
 Macierz korelacji możemy zwizualizować za pomocą funkcji `corrplot()` z
 pakietu **corrplot**
 
 Zainstaluj i wczytaj powyższy pakiet a następnie zwizualizuj macierz
 korelacji.
-=======
-Do obliczenia istotności korelacji służy funkcja `cor.test()`
+
+======= Do obliczenia istotności korelacji służy funkcja `cor.test()`
 
 Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
 `corrplot`. Zanistaluj i wczytaj pakiet a następnie użyj funkcji
 `corrplot()` do wizualizacji wcześniej obliczonej macierzy korelacji.
->>>>>>> 67541691508e3825b0eed9347a9462224a4b6e7d
 
 ### Regresja liniowa
 
@@ -197,9 +199,6 @@ Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
 Wizualizacje w R
 ----------------
 
-<<<<<<< HEAD
-Wykorzystamy pakiet `ggplot2`.
-=======
 Wykorzystamy pakiet `ggplot2`
 
 Zainstaluj i wczytaj pakiet `ggplot2`
@@ -210,4 +209,3 @@ wpisać:
 `ggplot(dane, aes(x,y))`
 
 aes - czyli *aesthetics*
->>>>>>> 67541691508e3825b0eed9347a9462224a4b6e7d
