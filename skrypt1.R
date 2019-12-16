@@ -22,7 +22,7 @@ class(wektor)
 #funkcje
 #wczytywanie gotowej bazy danych, najczęściej w formacie .csv
 
-dane = read.csv("E:/dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
+dane = read.csv("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
 str(dane)
 dane$Nachylenie
 dane[,4]
@@ -61,12 +61,11 @@ cor.test(dane$Wiek, dane$HL)
 library(corrplot)
 kor = cor(sub_dane, use = "complete.obs")
 pairs(sub_dane)
-<<<<<<< HEAD
+
 corrplot(kor, method = "color", type = "upper")
 corrplot.mixed(kor, lower.col = "black", upper = "color")
-=======
+
 corrplot(kor, type = "upper", method = "color")
->>>>>>> 67541691508e3825b0eed9347a9462224a4b6e7d
 
 ?corrplot
 
@@ -76,35 +75,60 @@ reg_lin #równanie regresji - współczynniki
 scatter.smooth(dane$Wiek, dane$HL)
 summary(reg_lin)
 
-AIC(reg_lin)
-
-
-
 pred_HL = predict(reg_lin, dane)
 plot(dane$HL, pred_HL)
 plot(reg_lin)
 
 
-#multiple linear regression - zestandaryzowac i znormalizowac!!?
+#multiple linear regression
 
 sub_dane_sc = scale(sub_dane)
 
-reg_wiel = lm(sub_dane$SI ~ sub_dane$Wiek + sub_dane$NPM + sub_dane$HL)
+reg_wiel = lm(sub_dane$HL ~ sub_dane$Wiek + sub_dane$NPM)
 summary(reg_wiel)
 
-#regresja nieliniowa - SI a wysokość npm
+plot(dane$NPM, dane$SI)
+#regresja nieliniowa - SI a wysokość npm - porównanie z liniową
 scatter.smooth(dane$NPM, dane$SI)
-reg_nielin = lm(dane$SI ~ poly(dane$NPM,2))
-summary(reg_nielin)
+reg_poly = lm(dane$SI ~ poly(dane$NPM,3))
+summary(reg_poly)
 
+#porównanie z regresja liniową
+reg_lin = lm(dane$SI ~ dane$NPM)
+summary(reg_lin)
 
+#GGPLOT
+ggplot(dane, aes(NPM, SI))
 
+ggplot(dane, aes(NPM, SI))+
+  geom_point(color = "steelblue", size = 5, alpha = 0.6)+ #mapping
+  geom_smooth(se = FALSE, color = "black", size = 1.2)+#szare linie to confidence intervals
+  xlim(500,1300)+
+  ylim(15, 40)+
+  labs(title = "Elevations vs Site Index", x = "Site Index", y = "Elevation")
 
-library(ggplot2)
 ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) + 
   geom_point(alpha = 0.6)+
-  geom_hline(yintercept = 40, size = 1.8, alpha = 0.6)+
+  geom_hline(yintercept = 40, size = 1.2, alpha = 0.6)+
+  #geom_smooth(size =2, se = 0)+
+  xlim(500, 1400)+
   theme_classic()
+
+library(ggplot2)
+ggplot(dane, aes(x = HL))+
+  geom_histogram()
+
+ggplot(dane, aes(x = Wiek, fill = Nadle.nictwo))+
+  geom_density(alpha= 0.5)+
+  geom_vline(aes(xintercept = mean(Wiek)), linetype = "dashed", size = 1)+
+  theme(legend.position = "bottom")
+
+
+ggplot(dane, aes(x = Wiek))+
+  geom_density(alpha= 0.5)+
+  geom_vline(aes(xintercept = mean(Wiek)), linetype = "dashed", size = 1)+
+  theme(legend.position = "bottom")+
+  facet_grid(.~Nadle.nictwo)
 
 ggplot(dane, aes(Wiek, HL))+
   geom_point()+
