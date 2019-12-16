@@ -110,6 +110,9 @@ Analizy statystyczne w R
 -   Prosta regresja liniowa
 -   Regresja wieloraka
 
+**Przed przystąpieniem do analiz warto sprawdzic poprawność wczytanych
+danych oraz uzupełnić/usunąć wartości puste (*NA*)**
+
 ### Statystyki opisowe
 
 Statystyki takie jak średnia, minimum, odchylenie standardowe,
@@ -124,7 +127,7 @@ mediana... dla danej zmienniej uzyskamy poprzez wpisanie:
 `median()`
 
 **Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
-jako **NA** (Not Available) wynikiem wyżej wymienionych operacji również
+jako *NA* (*Not Available*) wynikiem wyżej wymienionych operacji również
 będzie NA. Aby policzyć statystyki dla wartości, które nie są NA nalezy
 dodać argument `na.rm = TRUE` np.:
 
@@ -193,14 +196,22 @@ Sprawdź inne parametry modelu poprzez zastosowanie funkcji `summary()`
 W podsumowaniu modelu znajdziemy między innymi wartość p (przedostatnia
 kolumna) oraz współczynnik determinacji R2.
 
-Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
-
 ### Regresja nieliniowa
 
 Wykorzystamy zmienne wysokości NPM i SI w regresji wielomianowej
 (*polynomial*), która ma postać:
 
 `lm(Y ~ poly(X,i))`, gdzie *i* to stopień wielomianu
+
+Utwórz kilka modeli z różnym stopniem wielomianu i oszacuj, który z nich
+jest najlepiej dopasowany.
+
+### Predykcja na podstawie utworzonego modelu
+
+Funkcja `predict()` pozwala na obliczenie predykowanych wartości na
+podstawie modelu regresji:
+
+`predict(model, dane)`
 
 ------------------------------------------------------------------------
 
@@ -253,5 +264,10 @@ definiujemy je poza `aes()`
 
 `ggplot(dane, aes(x,y, color = a, size = b))+     geom_point()`
 
-Jest to tzw. *mapping*. Aby ustawic kolory zgodnie z kategorią/zmienną
+Jest to tzw. *mapping*. Aby ustawić kolory zgodnie z kategorią/zmienną
 argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
+
+------------------------------------------------------------------------
+
+Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
+==============================================================================

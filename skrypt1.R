@@ -90,7 +90,7 @@ summary(reg_wiel)
 plot(dane$NPM, dane$SI)
 #regresja nieliniowa - SI a wysokość npm - porównanie z liniową
 scatter.smooth(dane$NPM, dane$SI)
-reg_poly = lm(dane$SI ~ poly(dane$NPM,3))
+reg_poly = lm(dane$SI ~ poly(dane$NPM,2))
 summary(reg_poly)
 
 #porównanie z regresja liniową
@@ -138,6 +138,19 @@ ggplot(dane, aes(Wiek, HL))+
 ggplot(dane, aes(y = HL, color = Seria))+
   geom_boxplot()+
   facet_grid(aes(rows = Seria))
+
+
+#porównanie regresji - punkty- prawdziwe obserwacje i dwie linie regresji
+reg_poly = lm(dane$SI ~ poly(dane$NPM,3))
+reg_lin = lm(dane$SI ~ dane$NPM)
+
+ggplot(dane)+
+  geom_point(aes(NPM, SI),
+             color = "black")+
+  geom_line(aes(NPM, predict(reg_lin, dane)),
+                color = "blue", size = 1.4)+
+  geom_line(aes(NPM, predict(reg_poly, dane)),
+            color = "darkgreen", size = 1.4)
 
 
 
