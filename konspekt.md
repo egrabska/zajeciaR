@@ -267,7 +267,6 @@ definiujemy je poza `aes()`
 Jest to tzw. *mapping*. Aby ustawić kolory zgodnie z kategorią/zmienną
 argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
 
-------------------------------------------------------------------------
+### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
 
-Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
-==============================================================================
+![Porównanie regresji](REGRESJA.jpeg)

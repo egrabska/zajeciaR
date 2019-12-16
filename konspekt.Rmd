@@ -223,10 +223,9 @@ Jest to tzw. _setting_, kolor czy kształt sa niezalezne od zmiennych, definiuje
 
 Jest to tzw. _mapping_. Aby ustawić kolory zgodnie z kategorią/zmienną  argumenty _color_ i _size_ musza się zaleźć wewnątrz `aes()`
 
-***
+###Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
 
-#Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
-
+![Porównanie regresji](REGRESJA.jpeg)
 
 
 
