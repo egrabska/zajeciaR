@@ -212,21 +212,22 @@ Do bardziej zaawansowanych wizualizacji w R możemy wykorzystać pakiet
 
 Zainstaluj i wczytaj pakiet `ggplot2`
 
-Funkcja `ggplot` charakteryzje się określoną składnią, którą na bieżąco
-można ulepszać (tzn. dodawać coraz więcej warstw, motwywów do już
-istniejącego wykresu). Spróbujmy stworzyć "bazę" pod nasz wykres:
+Funkcja `ggplot` z tego pakietu charakteryzje się określoną składnią,
+którą na bieżąco można ulepszać (tzn. dodawać coraz więcej warstw,
+motwywów do już istniejącego wykresu). Spróbujmy stworzyć "bazę" pod
+nasz wykres:
 
 `ggplot(dane, aes(x,y))`
 
 aes - czyli *aesthetics* określa które zmienne będą na osi X i osi y
 
-Stwórz bazę pod nasz wykres (na początk punktowy - scatterplot) -
+Stwórz bazę pod nasz wykres (na początku punktowy - *scatterplot*) -
 wybierz zmienne NPM i SI.
 
 Utworzony wykres, mimo iż wybraliśmy zmienne jest pusty. Aby coś się na
-nim pojawiło należy sprecyzować czy wykres ma być punktowy, liniowy itd.
-Kolejne elementy, w tym określenie typu geometrii wykresu będziemy
-dodawać używając znaku **+**
+nim pojawiło należy sprecyzować czy wykres ma być punktowy, liniowy czy
+innego rodzaju. Kolejne elementy, w tym określenie typu geometrii
+wykresu będziemy dodawać używając znaku **+**
 
 `ggplot(dane, aes(x,y))+     geom_point()`
 
@@ -241,5 +242,16 @@ Aby zmienić zakres osi x i y uzywamy odpowiednio (również używając znaku
 
 Tytuły wykresu i osi x i y: `labs(title = , x =, y= )`
 
-Kolory możemy ustawić w sposób "statyczny" lub przypisać np. odmienne
-kolory lub rozmiar w zależności od wartości jakiejś zmiennej:
+Kolory i kształty (argumenty *color*, *size*, *fill*) możemy ustawić "na
+stałe" lub przypisać np. odmienne kolory lub rozmiar w zależności od
+wartości jakiejś zmiennej, czyli:
+
+`ggplot(dane, aes(x,y))+       geom_point(color = "red", size = 2)`
+
+Jest to tzw. *setting*, kolor czy kształt sa niezalezne od zmiennych,
+definiujemy je poza `aes()`
+
+`ggplot(dane, aes(x,y, color = a, size = b))+     geom_point()`
+
+Jest to tzw. *mapping*. Aby ustawic kolory zgodnie z kategorią/zmienną
+argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
