@@ -186,7 +186,9 @@ Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
 ### Regresja liniowa
 
 Do obliczenia modelu regresji liniowej służy funkcja `lm()`. Formułę
-modelu podajemy w postaci: Y ~ X1 + X2 + ...
+modelu podajemy w postaci:
+
+Y ~ X1 + X2 + ...
 
 Oblicz model regresji liniowej - jako zmienną objaśnianą wybierz
 Wysokość a jako objaśniającą Wiek. Zapisz model jako obiekt *model1* i
@@ -267,7 +269,6 @@ definiujemy je poza `aes()`
 Jest to tzw. *mapping*. Aby ustawić kolory zgodnie z kategorią/zmienną
 argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
 
-------------------------------------------------------------------------
+### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
 
-Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
-==============================================================================
+![Porównanie regresji](REGRESJA.jpeg)

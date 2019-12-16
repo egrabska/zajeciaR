@@ -1,7 +1,7 @@
 ---
 title: "Zajęcia z R"
 data: 17-12-2019
-output: md_document
+output: word_document
 autor: Ewa Grabska
 ---
 
@@ -160,7 +160,9 @@ Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie `corrplot`
 ###Regresja liniowa
 
 Do obliczenia modelu regresji liniowej służy funkcja `lm()`. 
-Formułę modelu podajemy w postaci: Y ~ X1 + X2 + ...
+Formułę modelu podajemy w postaci: 
+
+  Y ~ X1 + X2 + ...
 
 Oblicz model regresji liniowej - jako zmienną objaśnianą wybierz Wysokość a jako objaśniającą Wiek. Zapisz model jako obiekt _model1_ i wywołaj go - pojawią się współczynniki a i b czyli równanie regresji.
 Sprawdź inne parametry modelu poprzez zastosowanie funkcji `summary()`
@@ -223,10 +225,9 @@ Jest to tzw. _setting_, kolor czy kształt sa niezalezne od zmiennych, definiuje
 
 Jest to tzw. _mapping_. Aby ustawić kolory zgodnie z kategorią/zmienną  argumenty _color_ i _size_ musza się zaleźć wewnątrz `aes()`
 
-***
+###Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
 
-#Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
-
+![Porównanie regresji](REGRESJA.jpeg)
 
 
 
