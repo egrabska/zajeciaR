@@ -67,8 +67,10 @@ plot(dane$Wiek, dane$HL)
 library(corrplot)
 kor = cor(sub_dane, use = "complete.obs")
 pairs(sub_dane)
-corrplot(kor)
+corrplot(kor, method = "color", type = "upper")
+corrplot.mixed(kor, lower.col = "black", upper = "color")
 
+?corrplot
 
 #regresja liniowa
 reg_lin = lm(dane$HL ~ dane$Wiek)

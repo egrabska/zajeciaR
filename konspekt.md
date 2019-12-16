@@ -3,9 +3,17 @@ Wprowadzenie
 
 Otwórz RStudio
 
-**R** – język
+**R** – język programowania; środowisko do obliczeń statystycznych i
+wizualizacji (nie tylko). Oprogramowanie R jest projektem GNU opartym o
+licencję GNU GPL, jest więc zupełnie darmowy zarówno do zastosowań
+edukacyjnych jak i biznesowych.
 
-**Rstudio** – program do języka R
+**Rstudio** - najpopularniejszy edytor do języka R.
+
+Instalacja i inne bardzo przydatne informacje można znaleźć w wielu
+tutorialach dostępnych online. Np. Przemysław Biecek [Przewodnik po
+pakiecie
+R](http://biecek.pl/r/przewodnikpopakiecierwydanieiiiinternet.pdf).
 
 RStudio składa się z kilku podokien i narzędzi:
 
@@ -123,16 +131,19 @@ dodać argument `na.rm = TRUE` np.:
 Proste wykresy mozna tworzyć za pomocą funckji `plot()`
 
 Spróbuj utworzyć wykres zależności wysokości (HL) od wieku drzew oraz
-Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg) Inne przydatne
-funkcje do wykresów to:
+Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg)
 
--   Wykres punktowy z krzywą `scatter.smooth()`
+Inne przydatne funkcje do wykresów to:
+
+-   Wykres rozrzutu z krzywą `scatter.smooth()`
 
 -   Wykres ramka-wąsy `box.plot()`
 
 -   Histogram `hist()`
 
 -   Wykres gęstości `plot(density())`
+
+-   Macierz wykresów rozrzutu `pairs()`
 
 Wygeneruj kilka z wyżej wymienionych typów wykresów dla wybranych
 zmiennych.
@@ -142,7 +153,7 @@ zmiennych.
 Do obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
 Domyślnie mierzy ona korelacje Pearsona.
 
-Wywołując pomoc dla funkcji cor() sprawdź jakie miary korelacji są
+Wywołując pomoc dla funkcji `cor()` sprawdź jakie miary korelacji są
 dostępne.
 
 Korelację obliczymy tylko dla danych liczbowych - dlatego przed jej
@@ -152,6 +163,12 @@ W tym celu wykorzystamy nawiasy kwadratowe.
 
 Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
 od 9 do 13, następnie oblicz macierz korelacji.
+
+Macierz korelacji możemy zwizualizować za pomocą funkcji `corrplot()` z
+pakietu **corrplot**
+
+Zainstaluj i wczytaj powyższy pakiet a następnie zwizualizuj macierz
+korelacji.
 
 ### Regresja liniowa
 
@@ -169,4 +186,4 @@ Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
 Wizualizacje w R
 ----------------
 
-Wykorzystamy pakiety `ggplot2` i `corrplot`
+Wykorzystamy pakiet `ggplot2`.
