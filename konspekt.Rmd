@@ -1,7 +1,7 @@
 ---
 title: "Zajęcia z R"
 data: 17-12-2019
-output: word_document
+output: md_document
 autor: Ewa Grabska
 ---
 
