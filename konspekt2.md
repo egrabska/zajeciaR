@@ -44,6 +44,10 @@ który jest jednym z najpopularniejszych pakietów w przetwarzaniu danych,
 stosowany aby poprawić czytelnośc i lepiej je zorganizować (*data
 manipulation*)
 
+W kolejnych krokach wykorzystamy narzędzia dostępne w pakiecie `dplyr`,
+który jest jednym z najpopularniejszych pakietów w przetwarzaniu danych
+- aby poprawić czytelnośc i lepiej je zorganizować (*data manipulation*)
+
 -   Zainstaluj/wczytaj pakiet `dplyr`
 
 -   Przetestuj funkcje: `glimpse()`, `count()`, `filter()`, `arrange()`,
