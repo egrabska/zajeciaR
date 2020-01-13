@@ -41,7 +41,9 @@ Do "czyszczenia" zbędnych znaków można użyć funkcji ``gsub()`` lub ``substr
 
 ***
 
+
 W kolejnych krokach wykorzystamy narzędzia dostępne w pakiecie ``dplyr``, który jest jednym z najpopularniejszych pakietów w przetwarzaniu danych, stosowany aby poprawić czytelnośc i lepiej je zorganizować (*data manipulation*)
+
 
 * Zainstaluj/wczytaj pakiet ``dplyr``
 
