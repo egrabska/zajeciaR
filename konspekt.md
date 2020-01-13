@@ -1,11 +1,17 @@
 Wprowadzenie
 ------------
 
-Otwórz RStudio
+**R** – język programowania; środowisko do obliczeń statystycznych i
+wizualizacji (nie tylko). Oprogramowanie R jest projektem GNU opartym o
+licencję GNU GPL, jest więc zupełnie darmowy zarówno do zastosowań
+edukacyjnych jak i biznesowych.
 
-**R** – język
+**Rstudio** - najpopularniejszy edytor do języka R.
 
-**Rstudio** – program do języka R
+Instalacja i inne bardzo przydatne informacje można znaleźć w wielu
+tutorialach dostępnych online. Np. Przemysław Biecek [Przewodnik po
+pakiecie
+R](http://biecek.pl/r/przewodnikpopakiecierwydanieiiiinternet.pdf).
 
 RStudio składa się z kilku podokien i narzędzi:
 
@@ -104,15 +110,24 @@ Analizy statystyczne w R
 -   Prosta regresja liniowa
 -   Regresja wieloraka
 
+**Przed przystąpieniem do analiz warto sprawdzic poprawność wczytanych
+danych oraz uzupełnić/usunąć wartości puste (*NA*)**
+
 ### Statystyki opisowe
 
 Statystyki takie jak średnia, minimum, odchylenie standardowe,
 mediana... dla danej zmienniej uzyskamy poprzez wpisanie:
 
-`mean()` `min()` `std()` `median()`
+`mean()`
+
+`min()`
+
+`std()`
+
+`median()`
 
 **Uwaga!** jeżeli w danych danych mamy wartości puste - w R oznaczane
-jako **NA** (Not Available) wynikiem wyżej wymienionych operacji również
+jako *NA* (*Not Available*) wynikiem wyżej wymienionych operacji również
 będzie NA. Aby policzyć statystyki dla wartości, które nie są NA nalezy
 dodać argument `na.rm = TRUE` np.:
 
@@ -127,13 +142,15 @@ Site Indexu (SI) od wysokości n.p.m. ![](plot1.jpeg)
 
 Inne przydatne funkcje do wykresów to:
 
--   Wykres punktowy z krzywą `scatter.smooth()`
+-   Wykres rozrzutu z krzywą `scatter.smooth()`
 
 -   Wykres ramka-wąsy `box.plot()`
 
 -   Histogram `hist()`
 
 -   Wykres gęstości `plot(density())`
+
+-   Macierz wykresów rozrzutu `pairs()`
 
 Wygeneruj kilka z wyżej wymienionych typów wykresów dla wybranych
 zmiennych.
@@ -143,7 +160,7 @@ zmiennych.
 Do obliczenia korelacji między zmiennymi możemy użyć funkcji `cor()`.
 Domyślnie mierzy ona korelacje Pearsona.
 
-Wywołując pomoc dla funkcji cor() sprawdź jakie miary korelacji są
+Wywołując pomoc dla funkcji `cor()` sprawdź jakie miary korelacji są
 dostępne.
 
 Korelację obliczymy tylko dla danych liczbowych - dlatego przed jej
@@ -154,6 +171,12 @@ W tym celu wykorzystamy nawiasy kwadratowe.
 Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
 od 9 do 13, następnie oblicz macierz korelacji.
 
+Macierz korelacji możemy zwizualizować za pomocą funkcji `corrplot()` z
+pakietu **corrplot**
+
+Zainstaluj i wczytaj powyższy pakiet a następnie zwizualizuj macierz
+korelacji.
+
 Do obliczenia istotności korelacji służy funkcja `cor.test()`
 
 Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
@@ -163,29 +186,89 @@ Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
 ### Regresja liniowa
 
 Do obliczenia modelu regresji liniowej służy funkcja `lm()`. Formułę
-modelu podajemy w postaci: Y ~ X1 + X2 + ...
+modelu podajemy w postaci:
+
+Y ~ X1 + X2 + ...
 
 Oblicz model regresji liniowej - jako zmienną objaśnianą wybierz
 Wysokość a jako objaśniającą Wiek. Zapisz model jako obiekt *model1* i
 wywołaj go - pojawią się współczynniki a i b czyli równanie regresji.
 Sprawdź inne parametry modelu poprzez zastosowanie funkcji `summary()`
 
-W podsumowaniu modelu znajdziemy między innymi wartość p
+W podsumowaniu modelu znajdziemy między innymi wartość p (przedostatnia
+kolumna) oraz współczynnik determinacji R2.
 
-Funkcja `predict()` pozwala na obliczenie predykowanych wartości.
+### Regresja nieliniowa
+
+Wykorzystamy zmienne wysokości NPM i SI w regresji wielomianowej
+(*polynomial*), która ma postać:
+
+`lm(Y ~ poly(X,i))`, gdzie *i* to stopień wielomianu
+
+Utwórz kilka modeli z różnym stopniem wielomianu i oszacuj, który z nich
+jest najlepiej dopasowany.
+
+### Predykcja na podstawie utworzonego modelu
+
+Funkcja `predict()` pozwala na obliczenie predykowanych wartości na
+podstawie modelu regresji:
+
+`predict(model, dane)`
 
 ------------------------------------------------------------------------
 
 Wizualizacje w R
 ----------------
 
-Wykorzystamy pakiet `ggplot2`
+Do bardziej zaawansowanych wizualizacji w R możemy wykorzystać pakiet
+`ggplot2`
 
 Zainstaluj i wczytaj pakiet `ggplot2`
 
-Funkcja `ggplot` składa się z kilku części, żeby stworzyć wykres należy
-wpisać:
+Funkcja `ggplot` z tego pakietu charakteryzje się określoną składnią,
+którą na bieżąco można ulepszać (tzn. dodawać coraz więcej warstw,
+motwywów do już istniejącego wykresu). Spróbujmy stworzyć "bazę" pod
+nasz wykres:
 
 `ggplot(dane, aes(x,y))`
 
-aes - czyli *aesthetics*
+aes - czyli *aesthetics* określa które zmienne będą na osi X i osi y
+
+Stwórz bazę pod nasz wykres (na początku punktowy - *scatterplot*) -
+wybierz zmienne NPM i SI.
+
+Utworzony wykres, mimo iż wybraliśmy zmienne jest pusty. Aby coś się na
+nim pojawiło należy sprecyzować czy wykres ma być punktowy, liniowy czy
+innego rodzaju. Kolejne elementy, w tym określenie typu geometrii
+wykresu będziemy dodawać używając znaku **+**
+
+`ggplot(dane, aes(x,y))+     geom_point()`
+
+Inne typy geometrii: `geom_line()`, `geom_smooth()`, `geom_boxplot()`
+...
+
+Dodaj do istniejącego wykresu krzywą używając `geom_smooth(se = 0)`.
+Argument se pokazuje (lub w tym przypadku nie) przedziały ufnośći.
+
+Aby zmienić zakres osi x i y uzywamy odpowiednio (również używając znaku
++): `xlim(min,max)` i `ylim(min,max)`.
+
+Tytuły wykresu i osi x i y: `labs(title = , x =, y= )`
+
+Kolory i kształty (argumenty *color*, *size*, *fill*) możemy ustawić "na
+stałe" lub przypisać np. odmienne kolory lub rozmiar w zależności od
+wartości jakiejś zmiennej, czyli:
+
+`ggplot(dane, aes(x,y))+       geom_point(color = "red", size = 2)`
+
+Jest to tzw. *setting*, kolor czy kształt sa niezalezne od zmiennych,
+definiujemy je poza `aes()`
+
+`ggplot(dane, aes(x,y, color = a, size = b))+     geom_point()`
+
+Jest to tzw. *mapping*. Aby ustawić kolory zgodnie z kategorią/zmienną
+argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
+
+### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
+
+![Porównanie regresji](REGRESJA.jpeg)
