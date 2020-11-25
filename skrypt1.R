@@ -53,9 +53,6 @@ sub_dane = dane[,c(3:4, 9:13)]
 cor(sub_dane, use = "complete.obs")
 cor(sub_dane, method = "spearman")
 
-#iSTOTNOŚC KORELACJI?
-cor.test(dane$Wiek, dane$HL)
-?cor.test
 
 #wykresy korelacji
 library(corrplot)
