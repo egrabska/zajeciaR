@@ -1,36 +1,53 @@
 #komentarze po znaku #
-
-
 #wykonanie danego polecenia > ctrl + enter
+
+
 1+1
 2^8
-log10(1000)
-cos(60) # w radianach!
+log10(1000) #funkcja: nazwa_funkcji(argument1. argument2, ...)
+pi
+cos(60) # w radianach
+cos(60*pi/180) #zamiana na stopnie
+
 x = 3 #przypisanie wartości do obiektu x i y:
 y = 2.4916
+x
 x+y
-nazwa = "Wydział leśny"
-nazwa #wywołanie obiektu
 round(y, 2)
+round(x+y)
+
+nazwa = "Wydział leśny"
+nazwa
 
 
 #TYPY OBIEKTÓW
-class()
+class(nazwa)
+class(x)
+
 wektor = c(4, 8, 10)
 class(wektor)
 
-#funkcje
-#wczytywanie gotowej bazy danych, najczęściej w formacie .csv
+macierz = matrix(1:9, nrow = 3, ncol = 3)
+macierz
+class(macierz)
+
+#wczytywanie bazy danych, najczęściej w formacie .csv - funkcja read.csv lub read.csv2
 
 dane = read.csv("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",")
+dane = read.csv2("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv")
+
 str(dane)
-dane$Nachylenie
-dane[,4]
-dane[7,19]
 summary(dane)
 unique(dane$Nadle.nictwo)
 
-#proste wykresy - scatterploty
+#wycięcie fragmentu bazy
+dane$Nachylenie 
+dane[,4]
+dane[7,19]
+dane[7,]
+dane[,c(3:4, 9:13)]
+
+#proste wykresy rozrzutu - funkcja plot()
 plot(dane$Wiek, dane$HL)
 plot(dane$NPM, dane$SI)
 plot(dane$HL, dane$Dg)
@@ -43,28 +60,36 @@ hist(dane$HL)
 #brak wartości - NA (Not Available)
 mean(dane$Wiek)
 min(dane$TPI200)
+is.na(dane$TPI200)
+min(dane$TPI200, na.rm = TRUE)
 sd(dane$TPI200, na.rm = TRUE)
-
 mean(dane$TPI200, na.rm = TRUE)
 
-str(dane)
-#subset bazy danych
-sub_dane = dane[,c(3:4, 9:13)]
-cor(sub_dane, use = "complete.obs")
-cor(sub_dane, method = "spearman")
 
+#wyciecie fragmentu bazy - przypisanie do obiektu dane2
+dane2 = dane[,c(3:4, 9:13, 22)]
+pairs(dane2)
 
-#wykresy korelacji
+#macierz i wykresy korelacji
+?cor
+
+cor(dane2)
+cor(dane2, use = "complete.obs")
+cor(dane2, method = "spearman")
+
+#instalacja pakietu do wizualizacji korelacji
+#install.packages("corrplot")
 library(corrplot)
-kor = cor(sub_dane, use = "complete.obs")
-pairs(sub_dane)
 
-corrplot(kor, method = "color", type = "upper")
-corrplot.mixed(kor, lower.col = "black", upper = "color")
+?corrplot
+
+m.cor = cor(dane2, use = "complete.obs")
+corrplot(m.cor, method = "color", type = "upper")
+corrplot.mixed(m.cor, lower.col = "black", upper = "circle")
 
 corrplot(kor, type = "upper", method = "color")
 
-?corrplot
+
 
 #regresja liniowa
 reg_lin = lm(dane$HL ~ dane$Wiek)
