@@ -120,19 +120,6 @@ scatter.smooth(dane$NPM, dane$SI)
 reg_poly = lm(dane$SI ~ poly(dane$NPM,2))
 summary(reg_poly)
 
-
-tab$area = NA
-tab$area = as.numeric(tab$area)
-tab$area = tab$Count/100
-
-tab = read.csv("c:/04_R/swir.csv", sep = ";", dec = ",")
-str(tab)
-tab$date3 = as.Date(tab$date3, "%d.%m.%Y")
-plot(tab$date3, tab$Count)
-ggplot(tab, aes(date3, area, fill = season))+
-  geom_bar(stat = "identity", width = 8.0)
-
-
 #porównanie z regresja liniową
 reg_lin = lm(dane$SI ~ dane$NPM)
 summary(reg_lin)
