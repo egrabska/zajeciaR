@@ -90,11 +90,14 @@ corrplot.mixed(m.cor, lower.col = "black", upper = "circle")
 corrplot(kor, type = "upper", method = "color")
 
 
-
 #regresja liniowa
-reg_lin = lm(dane$HL ~ dane$Wiek)
-reg_lin #równanie regresji - współczynniki
+?lm
+reg_lin = lm(HL ~ Wiek, dane)
+
+reg_lin 
+
 scatter.smooth(dane$Wiek, dane$HL)
+
 summary(reg_lin)
 
 pred_HL = predict(reg_lin, dane)
@@ -102,28 +105,22 @@ plot(dane$HL, pred_HL)
 plot(reg_lin)
 
 
-<<<<<<< HEAD
-#multiple linear regression - zestandaryzowac i znormalizowac!!?
 
-sub_dane_sc = scale(sub_dane)
-
-reg_wiel = lm(sub_dane$SI ~ sub_dane$Wiek + sub_dane$NPM + sub_dane$HL)
-=======
 #multiple linear regression
-
-sub_dane_sc = scale(sub_dane)
-
-reg_wiel = lm(sub_dane$HL ~ sub_dane$Wiek + sub_dane$NPM)
->>>>>>> 605af89f5519006dc74ab16a9503177abcb8c5f1
+reg_wiel = lm(HL ~ Wiek + NPM, dane)
 summary(reg_wiel)
 
-plot(dane$NPM, dane$SI)
-#regresja nieliniowa - SI a wysokość npm - porównanie z liniową
+reg_wiel = lm(SI ~ Wiek + HL, dane)
+summary(reg_wiel)
+scatter.smooth(dane$SI, dane$HL)
+
+
+#regresja wielomianowa - SI a wysokość npm - porównanie z liniową
 scatter.smooth(dane$NPM, dane$SI)
 reg_poly = lm(dane$SI ~ poly(dane$NPM,2))
 summary(reg_poly)
 
-<<<<<<< HEAD
+
 tab$area = NA
 tab$area = as.numeric(tab$area)
 tab$area = tab$Count/100
@@ -135,13 +132,13 @@ plot(tab$date3, tab$Count)
 ggplot(tab, aes(date3, area, fill = season))+
   geom_bar(stat = "identity", width = 8.0)
 
-=======
+
 #porównanie z regresja liniową
 reg_lin = lm(dane$SI ~ dane$NPM)
 summary(reg_lin)
->>>>>>> 605af89f5519006dc74ab16a9503177abcb8c5f1
 
-#GGPLOT
+
+#Pakiet GGPLOT
 ggplot(dane, aes(NPM, SI))
 
 ggplot(dane, aes(NPM, SI))+
@@ -158,8 +155,7 @@ ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) +
   xlim(500, 1400)+
   theme_classic()
 
-<<<<<<< HEAD
-=======
+
 library(ggplot2)
 ggplot(dane, aes(x = HL))+
   geom_histogram()
@@ -176,7 +172,7 @@ ggplot(dane, aes(x = Wiek))+
   theme(legend.position = "bottom")+
   facet_grid(.~Nadle.nictwo)
 
->>>>>>> 605af89f5519006dc74ab16a9503177abcb8c5f1
+
 ggplot(dane, aes(Wiek, HL))+
   geom_point()+
   geom_smooth(se=0, method ="gam")+
