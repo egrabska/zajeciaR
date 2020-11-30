@@ -1,5 +1,5 @@
-Wprowadzenie
-------------
+##Wprowadzenie
+
 
 **R** – język programowania; środowisko do obliczeń statystycznych i
 wizualizacji (nie tylko). Oprogramowanie R jest projektem GNU opartym o
@@ -31,11 +31,11 @@ RStudio składa się z kilku podokien i narzędzi:
     które następnie będziemy wykonywać. Do otwarcia nowego skryptu służy
     ikona Add R Script lub kombinacja klawiszy Ctrl+Shift+N.
 
-![Podstawy R - cheat sheet](base-r.pdf)
+[Podstawy R - cheat sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)
 
 **Funkcje** – zazwyczaj skonstruowane w sposób:
 
-nazwa\_funkcji(x, y, …)
+nazwa_funkcji(x, y, …)
 
 -   x – dane wejściowe
 -   y – pozostałe argumenty, które mogą być obligatoryjne lub opcjonalne
@@ -95,7 +95,7 @@ Aby wywołac jakąś konkretną wartość możemy wpisać:
 
 `dane[9,17]` gdzie w tym przypadku 9 to numer rzędu a 17 kolumny
 
-------------------------------------------------------------------------
+
 
 Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
 „bazowych”, jedną z nich jest `read.csv()`. Istnieje jednak wiele
@@ -114,10 +114,8 @@ Pomoc na temat danej funkcji możemy uzyskac wpisując:
 
 `?nazwa_funkcji`
 
-------------------------------------------------------------------------
 
-Analizy statystyczne w R
-------------------------
+##Analizy statystyczne w R
 
 -   Korelacja
 -   Regresja, modele regresji
@@ -182,7 +180,7 @@ obliczeniem wyodrębnimy cześć naszego data frame.
 
 W tym celu wykorzystamy nawiasy kwadratowe.
 
-Utwórz nowy obiekt *dane\_subset*, który będzie zawierał kolumny 3, 4 i
+Utwórz nowy obiekt *dane_subset*, który będzie zawierał kolumny 3, 4 i
 od 9 do 13, następnie oblicz macierz korelacji.
 
 Macierz korelacji możemy zwizualizować za pomocą funkcji `corrplot()` z
@@ -229,10 +227,9 @@ podstawie modelu regresji:
 
 `predict(model, dane)`
 
-------------------------------------------------------------------------
 
-Wizualizacje w R
-----------------
+
+##Wizualizacje - pakiet ggplot2
 
 Do bardziej zaawansowanych wizualizacji w R możemy wykorzystać pakiet
 `ggplot2`
@@ -256,7 +253,8 @@ nim pojawiło należy sprecyzować czy wykres ma być punktowy, liniowy czy
 innego rodzaju. Kolejne elementy, w tym określenie typu geometrii
 wykresu będziemy dodawać używając znaku **+**
 
-`ggplot(dane, aes(x,y))+     geom_point()`
+`ggplot(dane, aes(x,y))+`    
+    `geom_point()`
 
 Inne typy geometrii: `geom_line()`, `geom_smooth()`, `geom_boxplot()`
 ...
@@ -273,7 +271,8 @@ Kolory i kształty (argumenty *color*, *size*, *fill*) możemy ustawić "na
 stałe" lub przypisać np. odmienne kolory lub rozmiar w zależności od
 wartości jakiejś zmiennej, czyli:
 
-`ggplot(dane, aes(x,y))+       geom_point(color = "red", size = 2)`
+`ggplot(dane, aes(x,y))+`       
+    `geom_point(color = "red", size = 2)`
 
 Jest to tzw. *setting*, kolor czy kształt sa niezalezne od zmiennych,
 definiujemy je poza `aes()`
@@ -283,10 +282,8 @@ definiujemy je poza `aes()`
 Jest to tzw. *mapping*. Aby ustawić kolory zgodnie z kategorią/zmienną
 argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
 
-### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot:
+### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot - zadanie do wykonania:
 
-ZADANIE do wykonania:
-=====================
 
         1 - utwórz dwa modele regresji - liniowy i wielomianowy wyjaśniające relację wysokość (jako zmienna objaśniana) - pierśnica (zmienna objasniająca)
         2 - na wykresie przedstaw prawdziwe obserwacje (jako punkty), punktom ustaw kolor w zależności od 
@@ -297,4 +294,5 @@ ZADANIE do wykonania:
 
 Jak w przykładzie poniżej:
 
-![Porównanie regresji](wykres)
+![](wykres.jpeg) 
+

@@ -252,7 +252,7 @@ Jest to tzw. _mapping_. Aby ustawić kolory zgodnie z kategorią/zmienną argume
         
 Jak w przykładzie poniżej:
 
-![Porównanie regresji](wykres) 
+![Porównanie regresji](wykres.jpeg) 
 
 
 
