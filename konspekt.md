@@ -1,4 +1,4 @@
-##Wprowadzenie
+## Wprowadzenie
 
 
 **R** – język programowania; środowisko do obliczeń statystycznych i
@@ -229,7 +229,7 @@ podstawie modelu regresji:
 
 
 
-##Wizualizacje - pakiet ggplot2
+## Wizualizacje - pakiet ggplot2
 
 Do bardziej zaawansowanych wizualizacji w R możemy wykorzystać pakiet
 `ggplot2`
