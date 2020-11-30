@@ -1,7 +1,6 @@
 #komentarze po znaku #
 #wykonanie danego polecenia > ctrl + enter
 
-
 1+1
 2^8
 log10(1000) #funkcja: nazwa_funkcji(argument1. argument2, ...)
@@ -16,15 +15,19 @@ x+y
 round(y, 2)
 round(x+y)
 
-nazwa = "Wydział leśny"
+nazwa1 = "Wydział leśny"
 nazwa
 
 
 #TYPY OBIEKTÓW
-class(nazwa)
+class(nazwa1)
 class(x)
 
-wektor = c(4, 8, 10)
+w1 = c(4, 8, 10)
+w2 = c(1:10)
+w1
+w2
+
 class(wektor)
 
 macierz = matrix(1:9, nrow = 3, ncol = 3)
@@ -71,12 +74,14 @@ dane2 = dane[,c(3:4, 9:13, 22)]
 pairs(dane2)
 
 #macierz i wykresy korelacji
-?cor
+?cor #wywołanie pomocy dla danej funckji
 
 cor(dane2)
 cor(dane2, use = "complete.obs")
 cor(dane2, method = "spearman")
 
+
+#INSTALACJA PAKIETÓW 
 #instalacja pakietu do wizualizacji korelacji
 #install.packages("corrplot")
 library(corrplot)
@@ -105,7 +110,6 @@ plot(dane$HL, pred_HL)
 plot(reg_lin)
 
 
-
 #multiple linear regression
 reg_wiel = lm(HL ~ Wiek + NPM, dane)
 summary(reg_wiel)
@@ -124,13 +128,25 @@ summary(reg_poly)
 reg_lin = lm(dane$SI ~ dane$NPM)
 summary(reg_lin)
 
+#inne rodzaje regresji - np. GAM; metody machine learning itp... 
 
-#Pakiet GGPLOT
+
+#Pakiet GGPLOT2 - wizualizacja danych
+library(ggplot2)
+
 ggplot(dane, aes(NPM, SI))
 
 ggplot(dane, aes(NPM, SI))+
+  geom_point()
+
+#to samo co powyżej:
+ggplot(dane)+
+  geom_point(aes(NPM, SI))
+  
+
+ggplot(dane, aes(NPM, SI))+
   geom_point(color = "steelblue", size = 5, alpha = 0.6)+ #mapping
-  geom_smooth(se = FALSE, color = "black", size = 1.2)+#szare linie to confidence intervals
+  geom_smooth(se = 0, color = "black", size = 1.2)+
   xlim(500,1300)+
   ylim(15, 40)+
   labs(title = "Elevations vs Site Index", x = "Site Index", y = "Elevation")
@@ -140,10 +156,26 @@ ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) +
   geom_hline(yintercept = 40, size = 1.2, alpha = 0.6)+
   #geom_smooth(size =2, se = 0)+
   xlim(500, 1400)+
-  theme_classic()
+  theme_bw()
 
 
-library(ggplot2)
+#ggplot - dodawanie linii regresji 
+
+reg1 = lm(dane$SI ~ poly(dane$NPM, 2))
+coefficients(reg1)
+
+ggplot(dane)+
+  geom_point(aes(NPM, SI),
+             color = "black")+
+  geom_point(aes(NPM, predict(reg1, dane)),
+            color = "blue", size = 1.4)
+  #geom_smooth(aes(NPM, SI), se = 0)+
+  #geom_abline(intercept = 51.650001, slope = -0.02083231 )
+
+
+
+#inne typy wykresów
+
 ggplot(dane, aes(x = HL))+
   geom_histogram()
 
@@ -170,17 +202,16 @@ ggplot(dane, aes(y = HL, color = Seria))+
   facet_grid(aes(rows = Seria))
 
 
-#porównanie regresji - punkty- prawdziwe obserwacje i dwie linie regresji
-reg_poly = lm(dane$SI ~ poly(dane$NPM,3))
-reg_lin = lm(dane$SI ~ dane$NPM)
 
-ggplot(dane)+
-  geom_point(aes(NPM, SI),
-             color = "black")+
-  geom_line(aes(NPM, predict(reg_lin, dane)),
-                color = "blue", size = 1.4)+
-  geom_line(aes(NPM, predict(reg_poly, dane)),
-            color = "darkgreen", size = 1.4)
+
+
+# ZADANIE DO wykonania:
+        #1 - utwórz dwa modele regresji - liniowy i wielomianowy wyjaśniające relację wysokość (jako zmienna objaśniana) - pierśnica (zmienna objasniająca)
+        #2 - na wykresie przedstaw prawdziwe obserwacje (jako punkty), punktom ustaw kolor w zależności od 
+        #3 - dodaj dwie linie regresji (nadająć im inne kolory) - np. z wykorzystaniem predict()
+        #4 - nadaj punktom rozmiar zgodny z Wiekiem, oraz ustaw parametr alpha na 0.4
+        #5 - ustaw etykietę osi x jako "pierśnica" i y = "wysokość", natomiast tytuł jako "Porównanie regresji liniowej i wielomaniowej")
+
 
 
 
