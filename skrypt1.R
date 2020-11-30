@@ -161,7 +161,7 @@ ggplot(dane, aes(NPM, SI, color = Wystawa, size = Wiek)) +
 
 #ggplot - dodawanie linii regresji 
 
-reg1 = lm(dane$SI ~ poly(dane$NPM, 2))
+reg1 = lm(dane$SI ~ dane$NPM)
 coefficients(reg1)
 
 ggplot(dane)+

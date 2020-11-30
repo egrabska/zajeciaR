@@ -33,40 +33,50 @@ RStudio składa się z kilku podokien i narzędzi:
 
 ![Podstawy R - cheat sheet](base-r.pdf)
 
-Funkcje – zazwyczaj skonstruowane w sposób:
+**Funkcje** – zazwyczaj skonstruowane w sposób:
 
 nazwa\_funkcji(x, y, …)
 
 -   x – dane wejściowe
--   y – dalsze argumenty, które mogą być Na przykład w funkcji
+-   y – pozostałe argumenty, które mogą być obligatoryjne lub opcjonalne
+    Na przykład w funkcji
     [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html),
     która służy do wczytywania danych w formacie csv:
 
 `read.csv(file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, comment.char = "", ...)`
 
-Wynik działania danej funkcji możemy przypisać do zmiennej:
-`dane = read.csv(…)`
+Wynik działania danej funkcji możemy przypisać do zmiennej uzywając
+znaku `=` lub `<-` :
+
+    `dane = read.csv(…)`
+    `dane <- read.csv(…)`
 
 Typy obiektów w R:
 
--   Wektory
--   Tekst
--   Macierze
--   Listy
--   Ramki danych (**data frames**)
+-   Liczba (*numeric*)
+-   Wartość logiczna (*TRUE* lub *FALSE*)
+-   Tekst/ciąg znaków (*character*)
+-   Wektory (*vector*)
+-   Macierze (*matrix*)
+-   Listy (*list*)
+-   Ramki danych (*data frame*)
 
-*Wektory* - to najprostszy rodzaj struktury danych w R.
+**Wektory** - to najprostszy rodzaj struktury danych w R.
 
-`wektor = c(10, 12, 16, -4, 3, 17, -1, 5, 12, 4)`
+`wektor = c(10, 12, 16, -4, 3, 17, -1, 5, 12, 4)` `wektor = c(1:10)`
 
-*Ramki danych* Wczytywanie bazy danych - najczęściej w formacie .csv
-&gt; obiekt typu data frame Po wczytaniu danych warto sprawdzić czy
+**Macierze** - dwuwymiarowy obiekt (wiersze/kolumny)
+
+`macierz = matrix(1:9, nrow = 3, ncol = 3)`
+
+**Ramki danych** Wczytywanie bazy danych - najczęściej w formacie .csv -
+jest to obiekt typu data frame Po wczytaniu danych warto sprawdzić czy
 wszystko z nimi w porządku, np. uzywając str() lub summary()
 
 `str(dane)` `summary(dane)`
 
 Po wywołaniu fukncji str() zobaczymy strukturę każdej z kolumn.
-Pamiętaj, że aby przeprowadzac dalsze przetowrzenia na liczbach
+Pamiętaj, że aby przeprowadzac dalsze przetworzenia na liczbach
 odpowiednie kolumny muszą mięć odpowiednie formaty liczbowe - czyli
 **int** lub **num** Dostęp do poszczególne kolumn - możemy użyć znaku $
 czyli:
@@ -77,15 +87,19 @@ lub kwadratowcyh nawiasów:
 
 `dane[,4]`
 
-Aby wywołac jakąś konkretną wartość z data frame możemy wpisać:
+Analogicznie, wybranie jednego wiersza:
+
+`dane[7,]`
+
+Aby wywołac jakąś konkretną wartość możemy wpisać:
 
 `dane[9,17]` gdzie w tym przypadku 9 to numer rzędu a 17 kolumny
 
 ------------------------------------------------------------------------
 
 Pakiety – instalacja i wczytywanie W R dostępnych jest wiele funkcji
-„bazowych”, jedną z nich jest `read.csv()`. Istenieje jednak wiele
-dodatkowych pakietów zawierających fukkcje bardziej złożone i służące
+„bazowych”, jedną z nich jest `read.csv()`. Istnieje jednak wiele
+dodatkowych pakietów zawierających funkcje bardziej złożone i służące
 określonym zadaniom. Aby wykorzystać funkcje z jakiegoś pakietu należy
 najpierw go zainstalować (raz), następnie wczytać (każdorazowo przy
 nowym projekcie). Służą do tego funkcje:
@@ -111,7 +125,7 @@ Analizy statystyczne w R
 -   Regresja wieloraka
 
 **Przed przystąpieniem do analiz warto sprawdzic poprawność wczytanych
-danych oraz uzupełnić/usunąć wartości puste (*NA*)**
+danych oraz mieć świadomość brakujących wartości (*NA*)**
 
 ### Statystyki opisowe
 
@@ -185,8 +199,8 @@ Ciekawe narzędzia do wizualizacji korelacji dostępne są w pakiecie
 
 ### Regresja liniowa
 
-Do obliczenia modelu regresji liniowej służy funkcja `lm()`. Formułę
-modelu podajemy w postaci:
+Do obliczenia modelu prostej regresji liniowej służy funkcja `lm()`.
+Formułę modelu podajemy w postaci:
 
 Y ~ X1 + X2 + ...
 
@@ -198,7 +212,7 @@ Sprawdź inne parametry modelu poprzez zastosowanie funkcji `summary()`
 W podsumowaniu modelu znajdziemy między innymi wartość p (przedostatnia
 kolumna) oraz współczynnik determinacji R2.
 
-### Regresja nieliniowa
+### Regresja wielomianowa
 
 Wykorzystamy zmienne wysokości NPM i SI w regresji wielomianowej
 (*polynomial*), która ma postać:
@@ -269,6 +283,18 @@ definiujemy je poza `aes()`
 Jest to tzw. *mapping*. Aby ustawić kolory zgodnie z kategorią/zmienną
 argumenty *color* i *size* musza się zaleźć wewnątrz `aes()`
 
-### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot
+### Wizualizacja wyników regresji liniowej i wielomianowej z wykorzystaniem ggplot:
 
-![Porównanie regresji](REGRESJA.jpeg)
+ZADANIE do wykonania:
+=====================
+
+        1 - utwórz dwa modele regresji - liniowy i wielomianowy wyjaśniające relację wysokość (jako zmienna objaśniana) - pierśnica (zmienna objasniająca)
+        2 - na wykresie przedstaw prawdziwe obserwacje (jako punkty), punktom ustaw kolor w zależności od 
+        3 - dodaj dwie linie regresji (nadająć im inne kolory) - np. z wykorzystaniem predict()
+        4 - nadaj punktom rozmiar zgodny z Wiekiem, oraz ustaw parametr alpha na 0.4
+        5 - ustaw etykietę osi x jako "pierśnica" i y = "wysokość", natomiast tytuł jako "Porównanie regresji liniowej i wielomaniowej")
+        
+
+Jak w przykładzie poniżej:
+
+![Porównanie regresji](wykres)
