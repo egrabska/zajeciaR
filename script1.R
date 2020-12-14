@@ -21,16 +21,16 @@ x+y
 round(y, 2)
 round(x+y)
 
+
 name = "University of Agrculture"
 name
-
 
 #Basic data types:
 class(name) #character
 class(x) #numeric 
 z = 3L
 class(z) #integer
-#TRUE or FALSE - logical
+
 
 
 #Vectors - collection of elements
@@ -40,7 +40,14 @@ v3 = vector() #empty vector
 v4 = vector("numeric")
 v5 = c("cat", "dog", "parrot")
 
+
+#TRUE or FALSE - logical
+v1 == 1
+v1 == 8
 v5 == "cat"
+1 == 1
+1 == 2
+TRUE == TRUE
 
 v1 + v2
 
@@ -61,11 +68,11 @@ class(m2)
 typeof(m1)
 typeof(m2)
 
-?read.csv
 
-#but often, we just read database, ususally in csv format
 
-tab = read.csv("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv", sep = ";", dec = ",") #excel "provides" csv data seperated with semicolon not commas, 
+#often in R, we will read some objects, such as databases, they are ususally in .csv format
+
+tab = read.csv("D:/11_Git/zajeciaR/DL_dane_cw1.csv", sep = ";", dec = ",") #excel "provides" csv data seperated with semicolon not commas, 
 #so in read.csv I have to specify that, plus - in polish language the character used for decimal points is comma while in R it's a dot 
 #so I also have to specify that dec = "," 
 #But it of course depends on the format of data that you use! 
@@ -75,21 +82,23 @@ tab = read.csv2("D:/09_Dydaktyka/kurs_R/DL_dane_cw1.csv")
 #what class object is tab?
 class(tab) #a data frame
 
-#let's check it
+#let's check what's inside
 str(tab)
 summary(tab)
-unique(tab$...)
+
 
 #subsetting a dataframe
-tab$Nachylenie 
+tab$Slope
 tab[,4]
 tab[7,19]
 tab[7,]
 tab[,c(3:4, 9:13)]
 
+unique(tab$District)
+
 #simple scatterplots using plot()
-plot(tab$Wiek, tab$HL)
-plot(tab$NPM, tab$SI)
+plot(tab$Age, tab$HL)
+plot(tab$Elevation, tab$SI)
 plot(tab$HL, tab$Dg)
 
 #other plot types
@@ -99,7 +108,7 @@ plot(density(tab$HL))
 hist(tab$HL)
 
 #missing values - NA (Not Available)
-mean(tab$Wiek)
+mean(tab$Age)
 min(tab$TPI200)
 is.na(tab$TPI200)
 min(tab$TPI200, na.rm = TRUE)
@@ -108,8 +117,9 @@ mean(tab$TPI200, na.rm = TRUE)
 
 
 #subsetting dataframe and assigning it to a new object
-tab2 = tab[,c(3:4, 9:13, 22)]
+tab2 = tab[,c(3:4, 9:13, 18)]
 pairs(tab2)
+
 
 #correlation coeeficients and matrices
 ?cor #to check help for some function use ? 
@@ -119,8 +129,7 @@ cor(tab2, use = "complete.obs")
 cor(tab2, method = "spearman")
 
 
-#packages installaltion and loading
-
+#packages installaltion and loading - install only once, loading in every new project
 #install.packages("corrplot")
 library(corrplot)
 
@@ -130,86 +139,91 @@ m.cor = cor(tab2, use = "complete.obs")
 corrplot(m.cor, method = "color", type = "upper")
 corrplot.mixed(m.cor, lower.col = "black", upper = "circle")
 
-corrplot(kor, type = "upper", method = "color")
+corrplot(m.cor, type = "upper", method = "color")
 
 
 
 #linear regression - lm()
 ?lm
 
-reg_lin = lm(HL ~ Wiek, tab)
-
+reg_lin = lm(HL ~ Age, tab)
 reg_lin 
-
-scatter.smooth(tab$Wiek, tab$HL)
-
 summary(reg_lin)
-
-pred_HL = predict(reg_lin, tab)
-plot(tab$HL, pred_HL)
 plot(reg_lin)
+scatter.smooth(tab$Age, tab$HL)
+
+
+
+#predicting "new" values based on regression model
+pred_HL = predict(reg_lin, tab)
+pred_HL
+plot(tab$HL, pred_HL)
+
 
 
 #multiple linear regression
-reg_wiel = lm(HL ~ Wiek + NPM, tab)
-summary(reg_wiel)
+reg_mul = lm(HL ~ Age + Elevation, tab)
+summary(reg_mul)
 
-reg_wiel = lm(SI ~ Wiek + HL, tab)
-summary(reg_wiel)
+reg_mul2 = lm(SI ~ Age + HL, tab)
+summary(reg_mul2)
 scatter.smooth(tab$SI, tab$HL)
 
 #polynomial regression - SI as a function of elevation
-scatter.smooth(tab$NPM, tab$SI)
-reg_poly = lm(tab$SI ~ poly(tab$NPM,2))
+scatter.smooth(tab$Elevation, tab$SI)
+
+reg_poly = lm(tab$SI ~ poly(tab$Elevation,2))
 summary(reg_poly)
 
 #comparison with linear regression  
-reg_lin = lm(tab$SI ~ dane$NPM)
+reg_lin = lm(tab$SI ~ tab$Elevation)
 summary(reg_lin)
 
-#ithere are many other methods for regressions such as GAM or metody machine learning itp... 
+#ithere are many other methods for regressions such as GAM or machine learning techniques... 
 
 
 #GGPLOT2 package - for visualization
 library(ggplot2)
 
-ggplot(tab, aes(NPM, SI))
+ggplot(tab, aes(Elevation, SI))
 
-ggplot(tab, aes(NPM, SI))+
+ggplot(tab, aes(Elevation, SI))+
   geom_point()
 
 #the same as above:
 ggplot(tab)+
-  geom_point(aes(NPM, SI))
+  geom_point(aes(Elevation, SI))
   
 
-ggplot(tab, aes(NPM, SI))+
-  geom_point(color = "steelblue", size = 5, alpha = 0.6)+ #mapping
+ggplot(tab, aes(Elevation, SI))+
+  geom_point(color = "steelblue", size = 5, alpha = 0.6)+
   geom_smooth(se = 0, color = "black", size = 1.2)+
   xlim(500,1300)+
   ylim(15, 40)+
   labs(title = "Elevations vs Site Index", x = "Site Index", y = "Elevation")
 
-ggplot(tab, aes(NPM, SI, color = Wystawa, size = Wiek)) + 
+p = ggplot(tab, aes(Elevation, SI, color = Aspect, size = Age)) + #colors and sizes related to other variables!
   geom_point(alpha = 0.6)+
-  geom_hline(yintercept = 40, size = 1.2, alpha = 0.6)+
+  #geom_hline(yintercept = 40, size = 1.2, alpha = 0.6)+
   #geom_smooth(size =2, se = 0)+
   xlim(500, 1400)+
   theme_bw()
 
+p + geom_hline(yintercept = 40, size = 1.2, alpha = 0.6)
 
-#ggplot - adding regression line
 
-reg1 = lm(tab$SI ~ dane$NPM)
+#ggplot - adding regression line - different ways
+
+reg1 = lm(tab$SI ~ tab$Elevation)
 coefficients(reg1)
 
-ggplot(tab)+
-  geom_point(aes(NPM, SI),
-             color = "black")+
-  geom_point(aes(NPM, predict(reg1, tab)),
-            color = "blue", size = 1.4)
-  #geom_smooth(aes(NPM, SI), se = 0)+
-  #geom_abline(intercept = 51.650001, slope = -0.02083231 )
+ggplot(tab, aes(Elevation, SI))+
+  geom_point( color = "black")+
+  geom_abline(intercept = 51.650001, slope = -0.02083231, color = "blue")
+  #geom_point(aes(Elevation, predict(reg1, tab)), color = "orange", size = 1.4)
+  #stat_smooth(method = "lm", formula = y ~ poly(x,2), color = "red", se= 0)+
+  #stat_smooth(method = "lm", formula = y ~ x, color = "darkgreen", se = 0)
+
 
 
 
@@ -218,39 +232,32 @@ ggplot(tab)+
 ggplot(tab, aes(x = HL))+
   geom_histogram()
 
-ggplot(tab, aes(x = Wiek, fill = Nadle.nictwo))+
-  geom_density(alpha= 0.5)+
-  geom_vline(aes(xintercept = mean(Wiek)), linetype = "dashed", size = 1)+
-  theme(legend.position = "bottom")
+ggplot(tab, aes(x = Age, fill = District))+
+  geom_density(alpha= 0.5)
+  #geom_vline(aes(xintercept = mean(Age)), linetype = "dashed", size = 1)+
+  #theme(legend.position = "bottom")
 
 
-ggplot(tab, aes(x = Wiek))+
+ggplot(tab, aes(x = Age))+
   geom_density(alpha= 0.5)+
-  geom_vline(aes(xintercept = mean(Wiek)), linetype = "dashed", size = 1)+
+  geom_vline(aes(xintercept = mean(Age)), linetype = "dashed", size = 1)+
   theme(legend.position = "bottom")+
-  facet_grid(.~Nadle.nictwo)
+  facet_grid(.~District)
 
 
-ggplot(tab, aes(Wiek, HL))+
-  geom_point()+
-  geom_smooth(se=0, method ="gam")+
-  geom_vline(xintercept = 100, size = 1.5)
-
-ggplot(tab, aes(y = HL, color = Seria))+
+ggplot(tab, aes(y = HL, x = geology, color = geology))+
   geom_boxplot()+
-  facet_grid(aes(rows = Seria))
+  geom_jitter()
 
 
 
-
-##3
-# ZADANIE DO wykonania:
-        #1 - utwórz dwa modele regresji - liniowy i wielomianowy wyjaśniające relację wysokość (jako zmienna objaśniana) - pierśnica (zmienna objasniająca)
-        #2 - na wykresie przedstaw prawdziwe obserwacje (jako punkty), punktom ustaw kolor w zależności od 
-        #3 - dodaj dwie linie regresji (nadająć im inne kolory) - np. z wykorzystaniem predict()
-        #4 - nadaj punktom rozmiar zgodny z Wiekiem, oraz ustaw parametr alpha na 0.4
-        #5 - ustaw etykietę osi x jako "pierśnica" i y = "wysokość", natomiast tytuł jako "Porównanie regresji liniowej i wielomaniowej")
-
+##-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Homework:
+        #1 - create two regression models - simple linear and polynomial, which explain the relationship between HL (response variable) and Dg (predictor variable)
+        #2 - using ggplot create plot with real observations as points
+        #3 - add two regression lines (in different colors)
+        #4 - set size of points according to the age and set alpha to 0.4
+        #5 - describe x lab as "diameter", y lab as "Height" and the title as "Linear vs polynomial regression"
 
 
 
